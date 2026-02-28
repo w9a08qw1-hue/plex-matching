@@ -1,9 +1,5 @@
-# fly.toml app configuration file
-
 app = 'plex-metatube-server'
 primary_region = 'iad'
-
-[build]
 
 [http_service]
   internal_port = 8080
