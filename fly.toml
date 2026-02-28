@@ -1,30 +1,23 @@
-app = "my-plex-meta-001"
-primary_region = "tyo"
+# fly.toml app configuration file generated for my-plex-meta-001 on 2026-02-28T17:51:48Z
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'my-plex-meta-001'
+primary_region = 'iad'
 
 [build]
-  image = "ghcr.io/metatube/metatube-server:latest"
 
-[env]
-  PLEX_TOKEN = "PLEX15"
-  CRON_UPDATE = "true"
-  UPDATE_INTERVAL = "7200"
-  GHCR_USER = "w9a08qw1-hue"
-  # 👇 이 부분이 아까 새로 만드신 새 토큰입니다!
-  GHCR_TOKEN = "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"
-
-[[services]]
+[http_service]
   internal_port = 8080
-  protocol = "tcp"
+  force_https = true
+  auto_stop_machines = 'stop'
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ['app']
 
-  [[services.ports]]
-    port = 80
-    handlers = ["http"]
-
-  [[services.ports]]
-    port = 443
-    handlers = ["tls", "http"]
-
-[vm]
-  cpu_kind = "shared"
+[[vm]]
+  memory = '1gb'
+  cpu_kind = 'shared'
   cpus = 1
-  memory_mb = 256
+  memory_mb = 1024
