@@ -1,5 +1,5 @@
-app = "plex-metatube-server-001"
-primary_region = "tyo"
+app = "plex-metatube-server-001"  # 유니크하게 바꿔도 됨
+primary_region = "tyo"            # Tokyo 리전
 
 [env]
 PLEX_TOKEN = "PLEX15"
