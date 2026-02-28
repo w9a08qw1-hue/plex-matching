@@ -1,17 +1,29 @@
-app = "plex-metatube-server-001"  # 유니크하게 바꿔도 됨
-primary_region = "tyo"            # Tokyo 리전
+app = "plex-metatube-server-001"
+primary_region = "tyo"
+
+[build]
+  image = "ghcr.io/metatube/metatube-server:latest"
 
 [env]
-PLEX_TOKEN = "PLEX15"
-CRON_UPDATE = "true"
-UPDATE_INTERVAL = "7200"
-GHCR_USER = "<GitHub 사용자명>"
-GHCR_TOKEN = "<생성한 PAT 값>"
+  PLEX_TOKEN = "PLEX15"
+  CRON_UPDATE = "true"
+  UPDATE_INTERVAL = "7200"
+  GHCR_USER = "w9a08qw1-hue"
+  GHCR_TOKEN = "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"
 
 [[services]]
   internal_port = 8080
   protocol = "tcp"
 
   [[services.ports]]
-    port = 8080
+    port = 80
     handlers = ["http"]
+
+  [[services.ports]]
+    port = 443
+    handlers = ["tls", "http"]
+
+[vm]
+  cpu_kind = "shared"
+  cpus = 1
+  memory_mb = 256
