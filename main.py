@@ -3,14 +3,24 @@ import os
 
 app = Flask(__name__)
 
+# 설정하신 비밀 토큰입니다.
+MY_TOKEN = "plex15" 
+
 @app.route('/')
 def home():
-    # 서버가 잘 돌아가는지 확인용 페이지
-    return "<h1>Plex Agent is Running!</h1><p>Render + Python 3</p>"
+    # 주소 뒤에 ?token=plex15 가 없으면 접속을 차단합니다.
+    token = request.args.get('token')
+    if token != MY_TOKEN:
+        return "Access Denied (Unauthorized)", 403
+    return "<h1>Plex Agent is Running!</h1><p>Secure Mode Active</p>"
 
 @app.route('/match')
 def match():
-    # Plex가 정보를 요청할 때 응답하는 부분
+    # Plex 요청 시에도 토큰이 맞는지 확인합니다.
+    token = request.args.get('token')
+    if token != MY_TOKEN:
+        return jsonify({"error": "Unauthorized"}), 403
+    
     title = request.args.get('title', 'Unknown')
     return jsonify({
         "status": "success",
@@ -20,6 +30,5 @@ def match():
     })
 
 if __name__ == "__main__":
-    # Render의 포트 설정에 맞게 실행
     port = int(os.environ.get("PORT", 8080))
     app.run(host='0.0.0.0', port=port)
