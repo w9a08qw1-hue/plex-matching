@@ -9,7 +9,7 @@ primary_region = "tyo"
   CRON_UPDATE = "true"
   UPDATE_INTERVAL = "7200"
   GHCR_USER = "w9a08qw1-hue"
-  GHCR_TOKEN = "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"
+
 
 [[services]]
   internal_port = 8080
