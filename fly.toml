@@ -1,4 +1,4 @@
-app = "plex-metatube-server-001"
+app = "my-plex-meta-001"
 primary_region = "tyo"
 
 [build]
@@ -9,7 +9,8 @@ primary_region = "tyo"
   CRON_UPDATE = "true"
   UPDATE_INTERVAL = "7200"
   GHCR_USER = "w9a08qw1-hue"
-  GHCR_TOKEN = "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"
+  # 👇 이 부분이 아까 새로 만드신 새 토큰입니다!
+  GHCR_TOKEN = "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"
 
 [[services]]
   internal_port = 8080
