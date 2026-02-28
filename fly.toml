@@ -1,14 +1,15 @@
-app = 'plex-metatube-server'
-primary_region = 'iad'
+app = "plex-metatube-server-001"
+primary_region = "tyo"
 
-[http_service]
+[env]
+PLEX_TOKEN = "PLEX15"
+CRON_UPDATE = "true"
+UPDATE_INTERVAL = "7200"
+
+[[services]]
   internal_port = 8080
-  force_https = true
-  auto_stop_machines = true
-  auto_start_machines = true
-  min_machines_running = 0
+  protocol = "tcp"
 
-[[vm]]
-  cpu_kind = 'shared'
-  cpus = 1
-  memory_mb = 512
+  [[services.ports]]
+    port = 8080
+    handlers = ["http"]
