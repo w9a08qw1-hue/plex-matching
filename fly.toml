@@ -5,6 +5,8 @@ primary_region = "tyo"            # Tokyo 리전
 PLEX_TOKEN = "PLEX15"
 CRON_UPDATE = "true"
 UPDATE_INTERVAL = "7200"
+GHCR_USER = "<GitHub 사용자명>"
+GHCR_TOKEN = "<생성한 PAT 값>"
 
 [[services]]
   internal_port = 8080
